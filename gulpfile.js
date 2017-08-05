@@ -37,7 +37,7 @@ gulp.task('sass', function(){
 gulp.task('css-libs',['sass'], function(){
     return gulp.src('app/css/*.css')
     .pipe(cssnano())
-    .pipe(rename({suffix: '.min'}))
+    // .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('app/css'));
 })
 
@@ -80,7 +80,8 @@ gulp.task('clear',function(){
 
 
 gulp.task('build',['clean','img','sass'],function(){
-    var buildCSS = gulp.src('app/css/*.min.css')
+    var buildCSS = gulp.src('app/css/*.css')
+    .pipe(cssnano())
     .pipe(gulp.dest('dist/css'));
 
     var buildFonts = gulp.src('app/fonts/**/*')
